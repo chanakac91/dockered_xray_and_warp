@@ -159,8 +159,8 @@ cat << EOF > xray/config/config.json
             "settings": {
                 "servers": [
                     {
-                        "address": "localhost",
-                        "port": 9050
+                        "address": "warp",
+                        "port": 1080
                     }
                 ]
             }
