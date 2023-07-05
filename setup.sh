@@ -174,6 +174,11 @@ cat << EOF > xray/config/config.json
         "rules": [
             {
                 "type": "field",
+                "user": ["admin@email.com"],
+                "outboundTag": "direct"
+            }
+            {
+                "type": "field",
                 "domain":[
                     "geosite:openai",
                     "ip.gs"
