@@ -235,26 +235,27 @@ if [ ! "$(docker ps -q -f name=$NAME)" ]; then
 fi
 
 pubip="$(dig +short myip.opendns.com @resolver1.opendns.com)"
-if [ "$pubip" == "" ]; then
+if [ "$pubip" == "" ];then
     pubip=`ifconfig eth0 | awk 'NR==2 {print $2}'
 fi
-if [ "$pubip" == "" ]; then
+if [ "$pubip" == "" ];then
     pubip=`ifconfig ens3 | awk 'NR==2 {print $2}'
 fi
-if [ "$pubip" == "" ]; then
-    echo "\e[95mUnknown IP!.\e[0m" 1>&2
+if [ "$pubip" == "" ];then
+    echo -e "\e[95mUnknown IP!.\e[0m" 1>&2
 fi
 
 echo " "
-echo "\e[96mInstallation has been completed!!\e[0m"
+echo -e "\e[96mInstallation has been completed!!\e[0m"
 echo " "
-echo "Script from https://t.me/CHATHURANGA_91"
-echo "Copyright mAX web™"
+echo "--------------------------- Configuration Setup Server -------------------------"
+echo "--------------- Script from https://t.me/CHATHURANGA_91 ------------------------"
+echo "                                Copyright mAX web™                              "
 echo " "
 echo "Server Information"
 echo "   - IP address   : ${pubip}"
-echo "   - VMESS        : 80"
-echo "   - VLESS        : 443"
-echo "   - Portainer    : 9000"
+echo "   - VMESS      : 80"
+echo "   - VLESS           : 443"
+echo "   - Portainer      : 9000"
 echo " "
 echo " "
