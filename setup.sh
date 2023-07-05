@@ -25,7 +25,7 @@ IMAGE="teddysun/xray"
 if [ ! "$(docker ps -q -f name=$NAME)" ]; then
 
     #input uuid
-    echo Enter a valid gen4 UUID:
+    echo -e "\e[96mEnter a valid gen4 UUID:\e[0m"
     read uuid
 
     rm -rf xray/config/config.json
