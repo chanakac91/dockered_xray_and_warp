@@ -9,13 +9,14 @@ sudo sed -i "s/#\$nrconf{restart} = 'i'/\$nrconf{restart} = 'a'/" /etc/needresta
 # install docker
 sudo apt update -y && apt upgrade -y
 sudo apt install -y docker.io docker-compose
+docker network create xray_warp
 
 NAME="portainer"
 
 # Install Portainer
 if [ ! "$(docker ps -q -f name=$NAME)" ]; then
     docker volume create portainer_data
-    docker run -d -p 9000:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+    docker run -d --network xray_warp -p 9000:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
 fi
 
 NAME="xray"
@@ -174,16 +175,16 @@ cat << EOF > xray/config/config.json
         "rules": [
             {
                 "type": "field",
-                "user": ["admin@email.com"],
-                "outboundTag": "direct"
-            }
-            {
-                "type": "field",
-                "domain":[
+                "domain": [
                     "geosite:openai",
                     "ip.gs"
                 ],
                 "outboundTag": "warp"
+            },
+            {
+                "type": "field",
+                "user": ["admin@email.com"],
+                "outboundTag": "direct"
             }
         ]
     }
@@ -208,6 +209,7 @@ EOF
 
     # create docker image
     docker run -d \
+        --network xray_warp \
         --name "${NAME}" \
         --privileged \
         --interactive \
@@ -229,6 +231,7 @@ if [ ! "$(docker ps -q -f name=$NAME)" ]; then
     docker build -t "$IMAGE" .
     
     docker run \
+        --network xray_warp \
         --hostname "${NAME}" \
         --name "${NAME}" \
         --privileged \
