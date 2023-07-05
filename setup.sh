@@ -191,7 +191,7 @@ EOF
     # Coping xray files
     rm -rf /etc/xray /var/log/xray
     mkdir -p /etc/xray /var/log/xray
-    cp .xray/config/config.json /etc/xray/
+    cp .xray/config/* /etc/xray/
     cp .xray/logs/* /var/log/xray/
 
     # Generate certificates
