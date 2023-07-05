@@ -191,8 +191,8 @@ EOF
     # Coping xray files
     rm -rf /etc/xray /var/log/xray
     mkdir -p /etc/xray /var/log/xray
-    cp .xray/config/* /etc/xray/
-    cp .xray/logs/* /var/log/xray/
+    cp xray/config/* /etc/xray/
+    cp xray/logs/* /var/log/xray/
 
     # Generate certificates
     openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
@@ -248,14 +248,13 @@ fi
 echo " "
 echo -e "\e[96mInstallation has been completed!!\e[0m"
 echo " "
-echo "--------------------------- Configuration Setup Server -------------------------"
-echo "--------------- Script from https://t.me/CHATHURANGA_91 ------------------------"
-echo "                                Copyright mAX web™                              "
+echo "Script from https://t.me/CHATHURANGA_91"
+echo "Copyright mAX web™"
 echo " "
 echo "Server Information"
 echo "   - IP address   : ${pubip}"
-echo "   - VMESS      : 80"
-echo "   - VLESS           : 443"
-echo "   - Portainer      : 9000"
+echo "   - VMESS        : 80"
+echo "   - VLESS        : 443"
+echo "   - Portainer    : 9000"
 echo " "
 echo " "
