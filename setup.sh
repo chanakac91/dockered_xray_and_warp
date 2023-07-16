@@ -191,7 +191,6 @@ cat << EOF > xray/config/config.json
             },
             {
                 "type": "field",
-                "user": ["admin@email.com"],
                 "outboundTag": "direct"
             }
         ]
