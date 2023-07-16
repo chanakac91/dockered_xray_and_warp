@@ -149,6 +149,14 @@ cat << EOF > xray/config/config.json
                         }
                     ]
                 }
+            }, 
+            "sniffing": { 
+                "enabled": true, 
+                "destOverride": [ 
+                    "http", 
+                    "tls", 
+                    "quic" 
+                ] 
             }
         }
     ],
@@ -172,12 +180,12 @@ cat << EOF > xray/config/config.json
         }
     ],
     "routing": {
+        "domainStrategy": "IPIfNonMatch",
         "rules": [
             {
                 "type": "field",
                 "domain":[
                     "geosite:openai",
-                    "domain:ip.sb",
                     "domain:openai.com",
                     "domain:chat.openai.com",
                     "domain:challenges.cloudflare.com",
@@ -191,6 +199,7 @@ cat << EOF > xray/config/config.json
             },
             {
                 "type": "field",
+                "user": ["admin@email.com"],
                 "outboundTag": "direct"
             }
         ]
