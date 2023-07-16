@@ -175,9 +175,17 @@ cat << EOF > xray/config/config.json
         "rules": [
             {
                 "type": "field",
-                "domain": [
+                "domain":[
                     "geosite:openai",
-                    "ip.gs"
+                    "domain:ip.sb",
+                    "domain:openai.com",
+                    "domain:chat.openai.com",
+                    "domain:challenges.cloudflare.com",
+                    "domain:chat.openai.com.cdn.cloudflare.net",
+                    "domain:openaiapi-site.azureedge.net",
+                    "domain:auth0.openai.com",
+                    "domain:ios.chat.openai.com",
+                    "domain:ai.com"
                 ],
                 "outboundTag": "warp"
             },
@@ -238,6 +246,7 @@ if [ ! "$(docker ps -q -f name=$NAME)" ]; then
         --interactive \
         --detach \
         --restart=always \
+        --dns=1.1.1.1 \
         -p 9050:1080 \
         $IMAGE
 fi
