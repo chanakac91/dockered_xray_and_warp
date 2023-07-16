@@ -110,7 +110,7 @@ cat << EOF > xray/config/config.json
                 "clients": [
                     { 
                         "id": "$uuid",
-                        "flow": "xtls-rprx-vision",
+                        "flow": "",
                         "level": 0,
                         "email": "admin@email.com"
                     }
@@ -123,12 +123,12 @@ cat << EOF > xray/config/config.json
                 ]
             },
             "streamSettings": {
-                "network": "tcp",
+                "network": "ws",
                 "wsSettings": {
                     "acceptProxyProtocol": false,
                     "path": "/vless"
                 },
-                "security": "tls",
+                "security": "",
                 "tlsSettings": {
                     "allowInsecure": true,
                     "certificates": [
